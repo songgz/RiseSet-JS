@@ -22,7 +22,7 @@ and enhance numerical performance.
 websites.
 
 [Jasmine](http://pivotal.github.com/jasmine/ "Jasmine") is used for unit testing
-this library and V1.1.0 of the standalone version is included in the `test` directory.  Simple open the `riseset
+this library and V1.1.0 of the standalone version is included in the `test` directory.  Simple open the HTML files in that directory to run the tests.
 
 ## Usage
 
