@@ -1,16 +1,25 @@
+/* Jasmine specifications for RiseSet-JS
+ * Murtaza Gulamali
+ *
+ * Expected values taken from Meeus, J. (1991) Astronomical Algorithms, William-Bell Inc.,
+ * Richmond, VA, USA. ISBN: 0943396352
+ */
+
 describe("RiseSet-JS", function() {
+	// define levels of accuracy for test functions
 	var one_hour, one_min, one_sec, one_millisec, one_arcmin, one_arcsec, tenth_arcsec;
 
 	beforeEach(function() {
 		one_hour     = 1/24;
 		one_min      = 1/1440;
 		one_sec      = 1/86400;
-		one_millisec = 1/86400000;
+		one_millisec = one_sec/1000;
 		one_arcmin   = 1/60;
 		one_arcsec   = 1/3600;
 		tenth_arcsec = one_arcsec/10;
 	});
 
+	// Examples 7a, 7b and subsequent table
 	it("the Astronomical Julian dates should be close to their corresponding dates", function() {
 		var dates = [ 1957,  9,  4.81, 2436116.31,
 		               333,  0, 27.5,  1842713.0,
@@ -38,6 +47,7 @@ describe("RiseSet-JS", function() {
 		}
 	});
 	
+	// Example 7c and subsequent exercise
 	it("the dates should match their corresponding Astronomical Julian Dates", function() {
 		var dates = [2436116.31, 1957, 9,  4, 19, 26, 24, 0,
 		             1842713.0,   333, 0, 27, 12,  0,  0, 0,
@@ -55,6 +65,7 @@ describe("RiseSet-JS", function() {
 		}
 	});
 	
+	// Example 21a
 	it("the nutations and obliquities of the ecliptic on 10 April 1987 should be close to the expected values", function() {
 		var ajd = riseset.dateToAJD(new Date(1987,3,10));
 		expect(riseset.nutationLongitude(ajd)).toBeCloseTo(-3.788/3600,tenth_arcsec);
@@ -63,9 +74,24 @@ describe("RiseSet-JS", function() {
 		expect(riseset.trueObliquity(ajd)).toBeCloseTo(23+26/60+36.850/3600,tenth_arcsec);
 	});
 	
-	it("the mean and apparent sidereal times on 10 April 1987 should be close to their expected values", function() {
+	// Example 11a
+	it("the mean and apparent sidereal times on 10 April 1987 should be close to their expected times", function() {
 		var ajd = riseset.dateToAJD(new Date(1987,3,10));
 		expect(riseset.meanSiderealTime(ajd)).toBeCloseTo((13+10/60+46.3668/3600)*15,tenth_arcsec);
 		expect(riseset.apparentSiderealTime(ajd)).toBeCloseTo((13+10/60+46.1351/3600)*15,tenth_arcsec);
+	});
+
+	// Example 11b
+	it("the mean sidereal time at 19:21 on 10 April 1987 should be close to its expected time", function() {
+		var ajd = riseset.dateToAJD(new Date(1987,3,10,19,21));
+		expect(riseset.meanSiderealTime(ajd)).toBeCloseTo(128.7378734,tenth_arcsec);
+	});
+	
+	// Example 24a
+	it("the apparent position of the Sun on 13 October 1992 should be close to its expected position", function() {
+		var ajd = riseset.dateToAJD(new Date(1992,9,13));
+		var position = riseset.solarPosition(ajd);
+		expect(position[0]).toBeCloseTo(-161.61918,tenth_arcsec);
+		expect(position[1]).toBeCloseTo(-7.78507,tenth_arcsec);
 	});
 });

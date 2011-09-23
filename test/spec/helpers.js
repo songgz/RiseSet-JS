@@ -1,3 +1,7 @@
+/* Jasmine helper functions for RiseSet-JS
+ * Murtaza Gulamali
+ */
+
 beforeEach(function() {
   this.addMatchers({
     toBeCloseTo: function(expectedValue,error) {
