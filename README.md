@@ -21,7 +21,7 @@ and enhance numerical performance.
  + **Minified** - A minified version of the normal library, suitable for use on
 websites.
 
-[Jasmine](http://pivotal.github.com/jasmine/ "Jasmine") is used for unit testing
+[Jasmine](https://jasmine.github.io/ "Jasmine") is used for unit testing
 this library and V1.1.0 of the standalone version is included in the `test` directory.  Simple open the HTML files in that directory to run the tests.
 
 ## Usage
